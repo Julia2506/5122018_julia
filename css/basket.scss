@@ -1,0 +1,98 @@
+.basket-box {
+    display: table;
+    border-collapse: collapse; 
+    width: 100%;
+
+    tr {
+        border-bottom: 1px solid black;
+
+        th {
+            text-align: start;
+            padding: 10px;
+        }
+
+        .photo { 
+            width: 120px;
+            padding: 10px 0;
+
+            div {
+                width: 100px;
+                height: 100px;
+                background-position: center center;
+                background-size: contain;
+                background-repeat: no-repeat;
+                border: 1px solid #bdbdbd;
+                margin: 0 auto;
+            }
+        }
+
+        .name {
+            padding-left: 10px;
+            width: 55%;
+        }
+
+        .size {
+            text-align: center;
+        }
+
+        .count {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 45px;
+            border: none;
+
+            .bnts {
+               
+                div {
+                    display: block;
+                    background-color: black;
+                    color: white;
+                    width: 15px;
+                    height: 15px;
+                    margin-top: 2px;
+                    margin-left: 10px;
+                    text-align: center;
+                }
+            }
+        }
+
+        .final-price {
+            text-align: center;
+        }
+
+        .del {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 45px;
+                background-color: black;
+                width: 1px;
+                height: 20px;
+                transform: rotate(45deg);
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                top: 45px;
+                background-color: black;
+                width: 1px;
+                height: 20px;
+                transform: rotate(-45deg);
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+            }
+        }
+    }         
+}
+

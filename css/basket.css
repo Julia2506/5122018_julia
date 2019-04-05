@@ -1,0 +1,103 @@
+.basket-box {
+  display: table;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.basket-box tr {
+  border-bottom: 1px solid black;
+}
+
+.basket-box tr th {
+  text-align: start;
+  padding: 10px;
+}
+
+.basket-box tr .photo {
+  width: 120px;
+  padding: 10px 0;
+}
+
+.basket-box tr .photo div {
+  width: 100px;
+  height: 100px;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: 1px solid #bdbdbd;
+  margin: 0 auto;
+}
+
+.basket-box tr .name {
+  padding-left: 10px;
+  width: 55%;
+}
+
+.basket-box tr .size {
+  text-align: center;
+}
+
+.basket-box tr .count {
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 45px;
+  border: none;
+}
+
+.basket-box tr .count .bnts div {
+  display: block;
+  background-color: black;
+  color: white;
+  width: 15px;
+  height: 15px;
+  margin-top: 2px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+.basket-box tr .final-price {
+  text-align: center;
+}
+
+.basket-box tr .del {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.basket-box tr .del::before {
+  content: '';
+  position: absolute;
+  top: 45px;
+  background-color: black;
+  width: 1px;
+  height: 20px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.basket-box tr .del:after {
+  content: '';
+  position: absolute;
+  top: 45px;
+  background-color: black;
+  width: 1px;
+  height: 20px;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+/*# sourceMappingURL=basket.css.map */

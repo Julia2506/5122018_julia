@@ -21,7 +21,7 @@
             <a href="/catalog.php?section=girl">Женское</a>
             <a href="/catalog.php?section=child">Детское</a>
         </nav>
-        <div class="basket">
+        <div class="basket header-basket">
             <a href="/basket.php">Товаров(<span>0</span>)</a>
         </div>
     </header>

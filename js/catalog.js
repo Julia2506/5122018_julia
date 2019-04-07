@@ -35,9 +35,19 @@ class Catalog {
                 [3500, 5000],
                 [5000, 20000]
             ],
-            activePrice: null
+            activePrice: null,
+            category:[
+                ['outerwear' ,'Верхняя одежда'],
+                ['jeans', 'Джинсы'],
+                ['shoes', 'Обувь'],
+                ['accessories', 'Аксессурары'] 
+            ],
+            activeCategory: null
         }
+
         this.renderFilterPrice();
+        this.renderFilterCategory();
+
     }
     renderFilterPrice(){
         let select = document.createElement('select');
@@ -56,8 +66,28 @@ class Catalog {
             that.filters.activePrice = this.value;
             that.load();
         });
-
     }
+
+    renderFilterCategory(){
+        let selectt = document.createElement('select');
+        selectt.name = 'filter-category';
+        this.filters.category.forEach((categoryArr, index) => {
+            let option = document.createElement('option');
+            option.innerHTML = `${categoryArr[1]}`;
+            option.value = `${categoryArr[0]}`;
+            selectt.appendChild(option);
+        });
+        this.el.querySelector('.catalog-filters').appendChild(selectt);
+
+
+        let that = this;
+        selectt.addEventListener('change', function(){
+            that.filters.activeCategory = this.value;
+            // console.log(that.filters.activeCategory);
+            that.load();
+        });
+    }
+
     render(){
         let catalogProductsBox = this.el.querySelector('.catalog-products');
         catalogProductsBox.innerHTML = '';
@@ -102,13 +132,19 @@ class Catalog {
         if( this.filters.activePrice != null) {
             path += `&filters_price=${this.filters.activePrice}`
         }
+        if( this.filters.activeCategory != null) {
+            path += `&filter_category=${this.filters.activeCategory}`
+        }
+        console.log(path);
+
         xhr.open('GET', path);
         xhr.send();
 
         xhr.addEventListener('load', ()=>{
+            //console.log(xhr.responseText);
             let data = JSON.parse(xhr.responseText);
             this.paginationRender(data.pagination);
-            console.log(data);
+            //console.log(data);
 
             //Тут пойдет код заполнения массива this.products
             this.products = [];

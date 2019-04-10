@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Мар 29 2019 г., 10:02
+-- Время создания: Апр 10 2019 г., 09:46
 -- Версия сервера: 10.1.35-MariaDB
 -- Версия PHP: 7.2.9
 
@@ -45,6 +45,29 @@ INSERT INTO `catalogs` (`id`, `name`, `code`) VALUES
 (1, 'Мужское', 'man'),
 (2, 'Женское', 'girl'),
 (3, 'Детское', 'child');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `category`
+--
+
+CREATE TABLE IF NOT EXISTS `category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) NOT NULL,
+  `code` varchar(25) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `category`
+--
+
+INSERT INTO `category` (`id`, `name`, `code`) VALUES
+(1, 'Верхняя одежда', 'outerwear'),
+(2, 'Джинсы', 'jeans'),
+(3, 'Обувь', 'shoes'),
+(4, 'Аксессурары', 'accessories');
 
 -- --------------------------------------------------------
 
@@ -106,6 +129,31 @@ INSERT INTO `product_catalog` (`id`, `product_id`, `catalog_id`) VALUES
 (4, 4, 1),
 (5, 5, 1),
 (6, 6, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `product_category`
+--
+
+CREATE TABLE IF NOT EXISTS `product_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `product_category`
+--
+
+INSERT INTO `product_category` (`id`, `product_id`, `category_id`) VALUES
+(1, 1, 2),
+(2, 2, 1),
+(3, 3, 1),
+(4, 4, 2),
+(5, 5, 3),
+(6, 6, 4);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

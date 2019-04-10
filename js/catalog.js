@@ -144,7 +144,7 @@ class Catalog {
             //console.log(xhr.responseText);
             let data = JSON.parse(xhr.responseText);
             this.paginationRender(data.pagination);
-            //console.log(data);
+            console.log(data);
 
             //Тут пойдет код заполнения массива this.products
             this.products = [];

@@ -17,15 +17,15 @@
     ";
 
     if(!empty($filter_price)) {
-    $sql_count_rows .= " AND price >={$filter_price[0]} AND price <={$filter_price[1]})";
+    $sql_count_rows .= " AND price >={$filter_price[0]} AND price <={$filter_price[1]}";
     }
 
     if(!empty($filter_category)) {
-    $sql_count_rows .= " AND pct.category_id = (SELECT id FROM category WHERE code = '{$filter_category}'))";
+    $sql_count_rows .= " AND pct.category_id = (SELECT id FROM category WHERE code = '{$filter_category}')";
     }
-    if (empty($filter_price) && empty($filter_category)) {
-        $sql_count_rows .= ')';
-    }
+    
+    $sql_count_rows .= ")";
+
     // d($sql_count_rows);
     $result_count_rows_arr = mysqli_query($db, $sql_count_rows);
     $count_rows = mysqli_fetch_assoc($result_count_rows_arr)['len'];
@@ -41,7 +41,8 @@
             'countPage'=> $count_page,
             'nowPage'=> $page,
             'section' => $section,
-            'category' => $filter_category
+        ],
+        'category'=>[
         ] 
     ];
 
@@ -58,11 +59,10 @@
         $sql_products .= " AND price >={$filter_price[0]} AND price <={$filter_price[1]}";
     }
     if(!empty($filter_category)) {
-        $sql_products .= " AND pct.category_id = (SELECT id FROM category WHERE code = '{$filter_category}'))";
+        $sql_products .= " AND pct.category_id = (SELECT id FROM category WHERE code = '{$filter_category}')";
     }
-    if (empty($filter_price) && empty($filter_category)) {
-        $sql_products .= ')';
-    }
+    $sql_products .= ")";
+
     $sql_products .= " limit {$from_row}, {$count_products_on_page}"; 
 
     //d($sql_products);
@@ -71,6 +71,15 @@
     while( $row = mysqli_fetch_assoc($result_products) ){
         $response['products'][]= $row;
     }
+
+
+    $sql_name_category = "SELECT * FROM category";
+    $result_name_category = mysqli_query($db, $sql_name_category);
+    while( $row = mysqli_fetch_assoc($result_name_category) ){
+        $response['category'][]= $row;
+    }
+    
+   //d($response);
 
     //d(json_encode($response));
     echo json_encode($response);
